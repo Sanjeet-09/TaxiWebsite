@@ -1,0 +1,169 @@
+.booking-body {
+    margin: 0;
+    background-color: #fff9db;
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.booking-section {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff9db;
+    /* Moved from body */
+}
+
+
+.search-box {
+    background: white;
+    padding: 60px 55px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 1200px;
+    /* box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12); */
+}
+
+.user-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.address-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+
+.input-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border: 1px solid #bbb;
+    border-radius: 36px;
+    padding: 18px 26px;
+    background: #fff;
+}
+
+
+.input-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 12px;
+    font-size: 16px;
+    background: transparent;
+    color: #333;
+}
+
+.input-box .material-icons {
+    color: #555;
+    font-size: 22px;
+}
+
+
+.search-icon {
+    cursor: pointer;
+}
+
+
+.swap-icon {
+    font-size: 32px;
+    cursor: pointer;
+    color: #444;
+}
+
+
+.action-buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 45px;
+}
+
+.action-buttons button {
+    border: none;
+    border-radius: 36px;
+    padding: 18px 52px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.later-btn {
+    background: white;
+    color: #000;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.now-btn {
+    background: #005577;
+    color: white;
+}
+
+
+@media (max-width: 900px) {
+    .booking-section {
+        padding: 40px 15px;
+    }
+
+    .search-box {
+        padding: 30px 10px;
+    }
+
+    .address-row {
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .input-box {
+        padding: 8px 8px;
+        min-width: 0;
+        border-radius: 20px;
+    }
+
+    .input-box .material-icons {
+        font-size: 18px;
+    }
+
+    .input-box input {
+        font-size: 13px;
+        padding: 5px 6px;
+        min-width: 0;
+    }
+
+    .swap-icon {
+        font-size: 20px;
+        min-width: 20px;
+        margin: 0 2px;
+        transform: none;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .action-buttons button {
+        width: auto;
+        flex: 1;
+        padding: 14px 0;
+        font-size: 14px;
+        justify-content: center;
+    }
+}
