@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .form-header {
     background-color: #005577;
     color: white;
@@ -27,11 +28,18 @@
 }
 
 
+=======
+/* Existing CSS */
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
 .booking-body {
     margin: 0;
     background-color: #fff9db;
     height: 100vh;
     overflow: hidden;
+<<<<<<< HEAD
+=======
+    /* Prevent scrolling */
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
 }
 
 * {
@@ -41,10 +49,16 @@
 
 .booking-section {
     width: 100%;
+<<<<<<< HEAD
     min-height: 100vh;
     padding-top: 120px;
     /* Space for the fixed header */
     padding-bottom: 20px;
+=======
+    height: 100vh;
+    padding: 10px;
+    /* Reduced from 20px */
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -310,11 +324,14 @@
         gap: 15px;
     }
 
+<<<<<<< HEAD
     .swap-icon {
         transform: rotate(90deg);
         margin: 5px 0;
     }
 
+=======
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
 
     .input-box {
         padding: 8px 8px;
@@ -437,10 +454,15 @@
     user-select: none;
     position: relative;
     border: 1px solid transparent;
+<<<<<<< HEAD
     color: #333;
 }
 
 
+=======
+}
+
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
 .calendar-day:hover:not(.disabled):not(.occupied) {
     background: #e3f2fd;
     color: #1976d2;
@@ -485,6 +507,7 @@
     gap: 12px;
 }
 
+<<<<<<< HEAD
 .calendar-cancel-btn {
     padding: 10px 24px;
     border-radius: 20px;
@@ -503,6 +526,17 @@
 }
 
 
+=======
+.calendar-close-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+>>>>>>> e4cbdbc5014b4db09b5c15cae94aee5fb9b5684b
 .calendar-confirm-btn {
     padding: 10px 24px;
     border-radius: 20px;
