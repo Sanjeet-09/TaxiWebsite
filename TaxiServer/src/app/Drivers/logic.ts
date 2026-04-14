@@ -60,12 +60,28 @@ export function generateWhatsAppLink(ownerPhone: string, bookingData: any, selec
 // ==========================================
 
 export async function upsertCustomerRecord(phone: string, name: string, email: string) {
+    const { data: existing, error: lookupError } = await supabase
+        .from('customers')
+        .select('phone_number,email')
+        .or(`phone_number.eq.${phone},email.eq.${email}`)
+        .limit(1);
+
+    if (lookupError) throw lookupError;
+
+    if (existing && existing.length > 0) {
+        const matchKey = existing[0].phone_number ? { phone_number: existing[0].phone_number } : { email };
+        const { data, error } = await supabase
+            .from('customers')
+            .update({ phone_number: phone, name, email })
+            .match(matchKey);
+
+        if (error) throw error;
+        return data;
+    }
+
     const { data, error } = await supabase
         .from('customers')
-        .upsert(
-            { phone_number: phone, name, email },
-            { onConflict: 'phone_number' }
-        );
+        .insert({ phone_number: phone, name, email });
 
     if (error) throw error;
     return data;
@@ -187,7 +203,11 @@ export function useDriversLogic() {
             window.open(whatsappUrl, '_blank');
 
         } catch (err) {
+            const error = err as { message?: string; details?: string; status?: number };
             console.error('Unexpected error:', err);
+            console.error('Error message:', error?.message);
+            console.error('Error details:', error?.details);
+            console.error('Error status:', error?.status);
             alert('Something went wrong. Please check your internet and try again.');
         }
 
