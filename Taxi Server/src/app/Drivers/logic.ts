@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '../utilities/supabase/supabase';
 
 export interface Driver {
@@ -14,38 +15,7 @@ export interface Driver {
     experience: string;
 }
 
-const driversData: Driver[] = [
-    {
-        id: 1,
-        name: 'Sandeep Sharma',
-        phone_number: '+91 98XXX XXX01',
-        license_number: 'GA-01-TX-2023',
-        created_at: '2023-01-15',
-        is_available: true,
-        rating: '4.9',
-        experience: '12 Years'
-    },
-    {
-        id: 2,
-        name: 'Antonio Dcosta',
-        phone_number: '+91 98XXX XXX02',
-        license_number: 'GA-02-TX-1098',
-        created_at: '2022-11-20',
-        is_available: true,
-        rating: '4.8',
-        experience: '15 Years'
-    },
-    {
-        id: 3,
-        name: 'Rajesh G. Naik',
-        phone_number: '+91 98XXX XXX03',
-        license_number: 'GA-03-TX-5542',
-        created_at: '2023-05-10',
-        is_available: true,
-        rating: '5.0',
-        experience: '8 Years'
-    }
-];
+
 
 // ==========================================
 // PURE UTILITY FUNCTIONS (Reusable anywhere)
@@ -72,20 +42,20 @@ export function buildTimestamp(dateStr: string, hour: string, minute: string, pe
 }
 
 export function generateWhatsAppLink(ownerPhone: string, bookingData: any, selectedDriver: Driver | null): string {
-    const rawMessage = `🚀 *NEW BOOKING REQUEST* 🚀\n\n` +
-        `*Customer:* ${bookingData.name}\n` +
-        `*Phone:* ${bookingData.phone}\n` +
-        `*Email:* ${bookingData.email}\n\n` +
-        `*Trip Details:* \n` +
-        ` *Route:* ${bookingData.routeType}\n` +
-        `*Car:* ${bookingData.carType}\n` +
-        `*Date:* ${bookingData.date}\n` +
-        `*Time:* ${bookingData.timeHour}:${bookingData.timeMinute} ${bookingData.timePeriod}\n\n` +
-        `*Addresses:* \n` +
-        `*Pickup:* ${bookingData.pickup}\n` +
-        `*Drop:* ${bookingData.drop}\n\n` +
-        `*Special Requests:* ${bookingData.specialRequests || 'None'}\n\n` +
-        `*Requested Driver:* ${selectedDriver?.name || 'Any'}`;
+    const rawMessage = `NEW BOOKING REQUEST\n\n` +
+        `Customer: ${bookingData.name}\n` +
+        `Phone: ${bookingData.phone}\n` +
+        `Email: ${bookingData.email}\n\n` +
+        `Trip Details: \n` +
+        `Route: ${bookingData.routeType}\n` +
+        `Car: ${bookingData.carType}\n` +
+        `Date: ${bookingData.date}\n` +
+        `Time: ${bookingData.timeHour}:${bookingData.timeMinute} ${bookingData.timePeriod}\n\n` +
+        `Addresses: \n` +
+        `Pickup: ${bookingData.pickup}\n` +
+        `Drop: ${bookingData.drop}\n\n` +
+        `Special Requests: ${bookingData.specialRequests || 'None'}\n\n` +
+        `Requested Driver: ${selectedDriver?.name || 'Any'}`;
 
     return `https://wa.me/${ownerPhone}?text=${encodeURIComponent(rawMessage)}`;
 }
@@ -140,6 +110,7 @@ export async function fetchDriversRecords() {
 // ==========================================
 
 export function useDriversLogic() {
+    const router = useRouter();
     const [drivers, setDrivers] = useState<Driver[]>([]);
     const [selectedDriver, setSelectedDriver] = useState<Driver | null>(null);
     const [bookingData, setBookingData] = useState<any>(null);
@@ -168,9 +139,13 @@ export function useDriversLogic() {
                 setBookingData(JSON.parse(savedData));
             } catch (e) {
                 console.error("Error parsing booking data", e);
+                router.push('/');
             }
+        } else {
+            // Unauth bypass guard: If no data exists, kick user back to home
+            router.push('/');
         }
-    }, []);
+    }, [router]);
 
     const handleSelectDriver = (driver: Driver) => {
         if (!driver.is_available) {
@@ -209,7 +184,7 @@ export function useDriversLogic() {
                 route_type: bookingData.routeType,
                 requested_category: bookingData.carType,
                 special_requests: bookingData.specialRequests || null,
-                status: 'Pending'
+                status: 'pending'
             });
 
             // 4. Generate Link & Open WhatsApp (using utility function)

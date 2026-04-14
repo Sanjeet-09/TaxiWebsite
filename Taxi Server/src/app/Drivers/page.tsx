@@ -30,8 +30,8 @@ export default function DriversPage() {
                     </div>
                 ) : (
                     <div className="drivers-grid">
-                        {driversData.map(driver => (
-                            <div key={driver.id} className="driver-card" onClick={() => handleSelectDriver(driver)}>
+                        {driversData.map((driver, index) => (
+                            <div key={driver.id || index} className="driver-card" onClick={() => handleSelectDriver(driver)}>
                                 <div className="driver-card-top"></div>
                                 <div className="driver-avatar">
                                     <span className="material-icons" style={{ fontSize: '40px' }}>account_circle</span>
@@ -48,7 +48,7 @@ export default function DriversPage() {
                                         <span style={{ marginLeft: '10px', color: '#666', fontSize: '0.8rem' }}>({driver.experience} Exp)</span>
                                     )}
                                 </div>
-                                
+
                                 <div className={`status-badge ${driver.is_available ? 'status-available' : 'status-unavailable'}`}>
                                     <div className="status-dot"></div>
                                     {driver.is_available ? 'Available Now' : 'On Trip'}
@@ -77,7 +77,7 @@ export default function DriversPage() {
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <button className="select-driver-btn">
                                     Select {driver.name.split(' ')[0]}
                                     <span className="material-icons">chevron_right</span>

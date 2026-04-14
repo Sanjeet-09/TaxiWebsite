@@ -72,8 +72,8 @@ export default function Home() {
           </label>
 
           <nav className="nav">
-            <a href="#cars" className="nav-link">OUR FLEET</a>
             <a href="#packages" className="nav-link">PACKAGES</a>
+            <a href="#cars" className="nav-link">OUR FLEET</a>
             <a href="#reviews" className="nav-link">REVIEWS</a>
             <a href="#contact" className="nav-link">CONTACT</a>
           </nav>
@@ -82,7 +82,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero-section">
-        <h1 className="hero-title">Experience Goa's Vibes</h1>
+        <h1 className="hero-title">Experience Goa&apos;s Vibes</h1>
         <h2 className="hero-subtitle">With Comfortable Rides</h2>
         <p className="hero-text">
           From sun-kissed beaches to heritage streets. We drive, you relax.
@@ -168,21 +168,21 @@ export default function Home() {
         <div className="reviews-container">
           <div className="review-card">
             <p className="review-quote">
-              "The driver was so polite and the car was spotless."
+              &quot;The driver was so polite and the car was spotless.&quot;
             </p>
             <p className="review-author">- Sarah Jenkins</p>
           </div>
 
           <div className="review-card">
             <p className="review-quote">
-              "Best rates we found for an airport drop."
+              &quot;Best rates we found for an airport drop.&quot;
             </p>
             <p className="review-author">- Rahul Verma</p>
           </div>
 
           <div className="review-card">
             <p className="review-quote">
-              "Smooth rides and great recommendations."
+              &quot;Smooth rides and great recommendations.&quot;
             </p>
             <p className="review-author">- Mike & Team</p>
           </div>
